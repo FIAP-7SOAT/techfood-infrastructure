@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  name        = "SG-${var.projectName}"
+  name        = "SG-${var.lab_role}"
   description = "EKS Security Group for Techfood"
   vpc_id      = ""
 
