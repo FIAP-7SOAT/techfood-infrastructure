@@ -28,7 +28,16 @@ Esse projeto tem como objetivo provisionar e gerenciar uma infraestrutura Kubern
 
 2. **Configure as Variáveis do Terraform:**
 
-   Edite o arquivo `vars.tf` para ajustar as variáveis conforme necessário, como `projectName`, `regionDefault`, e ARNs de roles.
+   Crie um arquivo terraform.tfvars com o seguinte formato:
+
+   ```bash
+    aws_region    =
+    project_name  =
+    lab_role      =
+    node_group    =
+    principal_arn =
+    policy_arn    =
+   ```
 
 3. **Inicialize o Terraform:**
 

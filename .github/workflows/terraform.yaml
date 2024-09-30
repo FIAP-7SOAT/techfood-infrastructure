@@ -3,8 +3,7 @@ name: Create Infra AWS
 on:
   push:
     branches:
-      - teste
-#      - main
+      - main
 
 env:
   REGION_DEFAULT: us-east-1
@@ -13,6 +12,14 @@ jobs:
   create_infra:
     name: terraform
     runs-on: ubuntu-latest
+
+    env:
+      TF_VAR_aws_region: ${{ secrets.TF_VAR_AWS_REGION }}
+      TF_VAR_project_name: ${{ secrets.TF_VAR_PROJECT_NAME }}
+      TF_VAR_lab_role: ${{ secrets.TF_VAR_LAB_ROLE }}
+      TF_VAR_node_group: ${{ secrets.TF_VAR_NODE_GROUP }}
+      TF_VAR_principal_arn: ${{ secrets.TF_VAR_PRINCIPAL_ARN }}
+      TF_VAR_policy_arn: ${{ secrets.TF_VAR_POLICY_ARN }}
 
     steps:
       - name: Checkout
@@ -24,7 +31,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ env.REGION_DEFAULT }}
+          aws-region: "us-east-1"
 
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v3
